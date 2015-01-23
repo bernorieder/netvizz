@@ -8,10 +8,10 @@
 
 header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
 
-require './ini.php';				// contains $appid and $secret, as well as $overridehash
+require './ini.php';				// contains $appid and $secret
 require './src/facebook.php';		// FB PHP-SDK
 
-$modules = array("personal","personallike","groups","pagelike","pages","pro_pages","groups_new","pages_new");	// every module needs to be registered here for basic hacking protection
+$modules = array("personal","personallike","groups","pagelike","pages");	// every module needs to be registered here for basic hacking protection
 
 ignore_user_abort(false);
 set_time_limit(3600*5);
@@ -166,12 +166,6 @@ if(!isset($_GET["module"])) {
 		<a href="index.php?module=pages">page data</a> - creates networks and tabular files for user activity around posts on pages
 	</div>';
 
-	if($user_id == "529065125") {
-		echo '<div><a href="index.php?module=pro_pages">page data (pro)</a> - version with caching, etc. - creates networks and tabular files for pages</div>';
-		echo '<div><a href="index.php?module=groups_new">new group module</a> - testing</div>';
-		echo '<div><a href="index.php?module=pages_new">new page module</a> - testing</div>';
-	}
-
 	echo '<hr class="fbcontentdivider" />
 	<br/>1.03 - 14.01.2015 - added like stats per country to page module
 	<br/>1.02 - 31.12.2014 - fixed bug in like network (was limited to 100 likes per page), added stat only feature to page module
@@ -203,12 +197,8 @@ if(!isset($_GET["module"])) {
 
 } else {
 
-	// check for anonymization override
+	// anonymization
 	$anon = true;
-	if($_GET["override"] == "true" && $_GET["hash"] == $overridehash) {
-		$anon = false;
-		echo "anonymization off: override<br /><br />";
-	}
 
 	// load requested module after basic security check
 	if(in_array($_GET["module"], $modules)) {
