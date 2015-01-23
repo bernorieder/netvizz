@@ -16,7 +16,6 @@ $modules = array("personal","personallike","groups","pagelike","pages");	// ever
 ignore_user_abort(false);
 set_time_limit(3600*5);
 ini_set("memory_limit","8500M");
-ini_set("error_reporting",1);
 
 $facebook = new Facebook(array(
   'appId'  => $appid,
@@ -49,10 +48,6 @@ if (isset($_SERVER["REMOTE_ADDR"]))    {
 <h1>netvizz v1.03</h1>
 
 <?php
-
-if($user_id != "529065125") {
-	//echo "due to resource constaints, netvizz is currently not available. please check back tomorrow"; exit;
-}
 
 $nowdate = date("Y_m_d_H_i_s");
 
