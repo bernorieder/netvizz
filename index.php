@@ -8,7 +8,7 @@
 
 header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
 
-require './ini.php';				// contains $appid and $secret
+require './ini.php';				// contains $appid, $secret, and $canvasurl
 require './src/facebook.php';		// FB PHP-SDK
 
 $modules = array("personal","personallike","groups","pagelike","pages");	// every module needs to be registered here for basic hacking protection
@@ -64,7 +64,7 @@ if(!$user_id) {
 	$and = "?".$and;
 	//print_r($_GET); exit;
 
-	$url = $facebook->getLoginUrl(array('scope' => 'user_status,user_groups,friends_likes,user_likes,read_stream,read_insights','redirect_uri' => 'https://apps.facebook.com/netvizz/'.$and));
+	$url = $facebook->getLoginUrl(array('scope' => 'user_status,user_groups,friends_likes,user_likes,read_stream,read_insights','redirect_uri' => $canvasurl.$and));
 	echo "<script type=\"text/javascript\">parent.location.href = '$url';</script>";
 	exit;
 
@@ -115,7 +115,7 @@ if($perms['user_status'] != 1 || $perms['user_groups'] != 1 || $perms['friends_l
 
 	echo "<p>This application has features that require extended permission to access data. It won't work without them.</p>";
 
-	$url = $facebook->getLoginUrl(array('scope' => 'user_status,user_groups,friends_likes,user_likes,read_stream,read_insights','redirect_uri' => 'https://apps.facebook.com/netvizz/'));
+	$url = $facebook->getLoginUrl(array('scope' => 'user_status,user_groups,friends_likes,user_likes,read_stream,read_insights','redirect_uri' => $canvasurl));
 	echo "<script type=\"text/javascript\">parent.location.href = '$url';</script>";
 	exit;
 }
