@@ -1,6 +1,8 @@
 # netvizz
 A collection of scripts that help with downloading data from the Facebook platform for research purposes.
 
+EDIT: this code is still based on v1.0 of FB's API and (most of it) no longer works.
+
 This should be relatively easy to set up:
 - You need a publicly accessible server running PHP (no database involved, but apparently Windows does not work - I've only tested this on Linux);
 - Put the files in a directory of your choice, e.g. http://yourserver.com/netvizz/;
